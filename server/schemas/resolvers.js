@@ -2,7 +2,7 @@ const { User, Post, Guild } = require('../models')
 const resolvers = {
   Query: {
     getUser: async (parent, { username }) => {
-      return User.findOne(username)
+      return User.findOne({ username })
         .populate('guilds')
         .populate('posts')
         .populate('pals')
