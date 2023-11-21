@@ -1,4 +1,6 @@
-const typeDefs = `
+const { gql } = require('apollo-server')
+
+const typeDefs = gql`
   type User {
     _id: ID
     username: String
@@ -43,30 +45,66 @@ const typeDefs = `
     getPost(postId: ID!): Post
     getPosts(postId: ID!): [Post]
     getGuild(guildId: ID!): Guild
-    getGuilds(guildId: ID!): [Guild]
+    getGuilds(username: String): [Guild]
+  }
+
+  input UserInput {
+    _id: ID
+    username: String
+    email: String
+    password: String
   }
 
   type Mutation {
-    # User
     createUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    updateUser(_id: ID!, username: String!, email: String!, password: String!): User
+    updateUser(
+      _id: ID!
+      username: String!
+      email: String!
+      password: String!
+    ): User
     joinGuild(username: String!, guildId: ID!): User
     addPal(username: String!, palUsername: String!): User
     removePal(username: String!, palUsername: String!): User
 
-    # Guilds
-    createGuild(name: String!, description: String, icon: String, owner: User): Guild
-    updateGuild(_id: ID!, name: String!, description: String, icon: String, owner: User): Guild
+    createGuild(
+      name: String!
+      description: String
+      icon: String
+      owner: UserInput
+    ): Guild
+    updateGuild(
+      _id: ID!
+      name: String!
+      description: String
+      icon: String
+      owner: UserInput
+    ): Guild
     deleteGuild(_id: ID!): Guild
 
-    # Posts
-    createPost(title: String!, description: String, icon: String, author: User): Post
-    updatePost(_id: ID!, title: String!, description: String, icon: String, author: User): Post
+    createPost(
+      title: String!
+      description: String
+      icon: String
+      author: UserInput
+    ): Post
+    updatePost(
+      _id: ID!
+      title: String!
+      description: String
+      icon: String
+      author: UserInput
+    ): Post
     deletePost(_id: ID!): Post
 
-    # Comments
-    createComment(postId: ID!, commentText: String!, commentAuthor: User!): Post
+    createComment(
+      postId: ID!
+      commentText: String!
+      commentAuthor: UserInput!
+    ): Post
     deleteComment(postId: ID!, commentId: ID!): Post
   }
 `
+
+module.exports = typeDefs
