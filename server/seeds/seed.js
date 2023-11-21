@@ -11,6 +11,6 @@ db.once('open', async () => {
   await User.insertMany(techData)
   await Guild.insertMany(guildData)
 
-  console.log('Usedrs seeded!')
+  console.log('Users seeded!')
   process.exit(0)
 })
