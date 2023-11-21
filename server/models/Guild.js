@@ -1,11 +1,6 @@
 const { Schema, model } = require('mongoose')
 
 const guildSchema = new Schema({
-  id: {
-    type: String,
-    unique: true,
-    required: true,
-  },
   name: {
     type: String,
     required: true,
