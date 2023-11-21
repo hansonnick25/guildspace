@@ -2,24 +2,26 @@ const { User, Post, Guild } = require('../models')
 const resolvers = {
   Query: {
     getUser: async (parent, { username }) => {
-      //   const params = _id ? { _id } : {}
-      return User.findOne(username).populate('guilds')
+      return User.findOne(username)
+        .populate('guilds')
+        .populate('posts')
+        .populate('pals')
     },
-    getPost: async (parent, { _id }) => {
-      const params = _id ? { _id } : {}
-      return Post.findOne(params)
+
+    getPost: async (parent, { postId }) => {
+      return Post.findOne({ _id: postId })
     },
-    getGuild: async (parent, { _id }) => {
-      const params = _id ? { _id } : {}
-      return Guild.findOne(params)
+
+    getGuild: async (parent, { guildId }) => {
+      return Guild.findOne({ _id: guildId })
     },
+
     getPosts: async (parent, { username }) => {
-      const params = username ? { username } : {}
-      return Post.find(params).sort({ createdAt: -1 })
+      return Post.find({ username }).sort({ createdAt: -1 })
     },
+
     getGuilds: async (parent, { username }) => {
-      const params = username ? { username } : {}
-      return Guild.find(params).sort({ createdAt: -1 })
+      return Guild.find({ username }).sort({ createdAt: -1 })
     },
   },
   Mutation: {
