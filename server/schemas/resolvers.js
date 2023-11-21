@@ -32,21 +32,21 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-      // const user = await User.findOne({ email });
+      const user = await User.findOne({ email })
 
-      // if (!user) {
-      //   throw AuthenticationError;
-      // }
+      if (!user) {
+        throw AuthenticationError
+      }
 
-      // const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password)
 
-      // if (!correctPw) {
-      //   throw AuthenticationError;
-      // }
+      if (!correctPw) {
+        throw AuthenticationError
+      }
 
-      // const token = signToken(user);
+      const token = signToken(user)
 
-      // return { token, user };
+      return { token, user }
     },
 
     updateUser: async (parent, { _id, username, email, password }) => {
@@ -90,7 +90,7 @@ const resolvers = {
       const guild = await Guild.create({ name, description, icon, owner })
       return guild
     },
-    
+
     updateGuild: async (parent, { _id, name, description, icon, owner }) => {
       const guild = await Guild.findOneAndUpdate(
         { _id },
@@ -119,7 +119,7 @@ const resolvers = {
       )
       return post
     },
-    
+
     deletePost: async (parent, { _id }) => {
       const post = await Post.findOneAndDelete({ _id })
       return post
