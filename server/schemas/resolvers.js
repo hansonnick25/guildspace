@@ -3,15 +3,9 @@ const { signToken, AuthenticationError } = require('../utils/auth')
 
 const resolvers = {
   Query: {
-    getAllUsers: async () => {
-      return User.find()
-      .populate('guilds')
-      .populate('posts')
-      .populate('pals')
-    },
-
-    getUser: async (parent, { username }) => {
-      return User.findOne({ username })
+    // Get all models inidividually
+    getUser: async (parent, { userId }) => {
+      return User.findOne({ _id: userId })
         .populate('guilds')
         .populate('posts')
         .populate('pals')
@@ -19,18 +13,32 @@ const resolvers = {
 
     getPost: async (parent, { postId }) => {
       return Post.findOne({ _id: postId })
+        .populate('author')
     },
-
+    
     getGuild: async (parent, { guildId }) => {
       return Guild.findOne({ _id: guildId })
+        .populate('owner')
+        .populate('members')
     },
 
-    getPosts: async (parent, { username }) => {
-      return Post.find({ username }).sort({ createdAt: -1 })
+    // Get all models
+    getAllUsers: async () => {
+      return User.find()
+      .populate('guilds')
+      .populate('posts')
+      .populate('pals')
     },
 
-    getGuilds: async (parent, { username }) => {
-      return Guild.find().sort({ createdAt: -1 })
+    getAllPosts: async () => {
+      return Post.find()
+      .populate('author')
+    },
+
+    getAllGuilds: async () => {
+      return Guild.find()
+      .populate('owner')
+      .populate('members')
     },
   },
   Mutation: {

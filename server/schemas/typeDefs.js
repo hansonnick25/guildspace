@@ -41,12 +41,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    getAllUsers: [User]
-    getUser(username: String!): User
+    getUser(userId: ID!): User
     getPost(postId: ID!): Post
-    getPosts(postId: ID!): [Post]
     getGuild(guildId: ID!): Guild
-    getGuilds: [Guild]
+    getAllUsers: [User]
+    getAllPosts: [Post]
+    getAllGuilds: [Guild]
   }
 
   input UserInput {
@@ -54,6 +54,10 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+  }
+
+  input UserIdInput {
+    _id: ID!
   }
 
   type Mutation {
@@ -73,7 +77,7 @@ const typeDefs = gql`
       name: String!
       description: String
       icon: String
-      owner: UserInput
+      owner: UserIdInput
     ): Guild
     updateGuild(
       _id: ID!
@@ -102,7 +106,7 @@ const typeDefs = gql`
     createComment(
       postId: ID!
       commentText: String!
-      commentAuthor: UserInput!
+      commentAuthor: String!
     ): Post
     deleteComment(postId: ID!, commentId: ID!): Post
   }
