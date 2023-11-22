@@ -26,7 +26,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShieldIcon from '@mui/icons-material/Shield';
 import Button from '@mui/material/Button';
 
-const Home = () => {
+function Home() {
 
     const icons = {
         'Home': <HomeIcon />,
@@ -42,8 +42,8 @@ const Home = () => {
 
 <Drawer
         sx={{
-            // bgcolor: '#2A2B2F', 
-            // color: '#FEF9F6',
+            bgcolor: '#2A2B2F', 
+            color: '#FEF9F6',
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -68,11 +68,12 @@ const Home = () => {
             </ListItem>
           ))}
         </List>
-        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder' }} variant="contained">Post</Button>
+        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2,  }} variant="contained">Post</Button>
         <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
         <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
                         Profile
                     </Avatar>
+
       </Drawer>
 
             <Box>
@@ -107,53 +108,7 @@ const Home = () => {
 
         </Box>
     )
-//     return (
-// <div>
-//     {/* left bar */}
-//     <div className='left-side'>
-//         <h1>App Name</h1>
-//         <nav>
-//             <ul>
-//                 <a><li>Home</li></a>
-//                 <a><li>Explore</li></a>
-//                 <a><li>Guild</li></a>
-//                 <a><li>Profile</li></a>
-//             </ul>
-//         </nav>
-//         <div className='post-btn'>Post</div>
-//         <div className='user-profile'>
-//             {/* image or avatar? */}
-//             <p>Profile Name</p> 
-//             <p>@name</p>
-//         </div>
-//         {/* middle bar */}
-//         <div className='middle'>
-//             {/* add middle content */}
-//             <div className="feed">
-//                 <p>For you</p>
-//                 <p>Following</p>
-//             </div>
-//             <div className="post-card"></div>
-//         </div>
-//         {/* right bar */}
-//         <div className='right-side'>
-//             {/* search button (text input element) */}
-//             {/* guilds to join */}
-//             <div className='guilds-to-join'>
-//                 <ul>
-//                     <a><li>Guild</li></a>
-//                     <a><li>Guild</li></a>
-//                     <a><li>Guild</li></a>
-//                     <a><li>Guild</li></a>
-//                     <a><li>Guild</li></a>
-//                 </ul>
-//             </div>
-//         </div>
-//     </div>
-
-// </div>
-//     );
-};
+}
 
 // export Home function
 export default Home;
