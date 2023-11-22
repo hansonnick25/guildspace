@@ -28,6 +28,7 @@ import Button from '@mui/material/Button';
 
 function Home() {
 
+    // sets the correct icon for the nav
     const icons = {
         'Home': <HomeIcon />,
         'Explore': <SearchIcon />,
@@ -35,115 +36,117 @@ function Home() {
         'Profile': <Person2Icon />
     }
 
+    // sets drawer width
     const drawerWidth = 200;
     
     return (
         <Box sx={{ display: 'flex', bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
-{/* left drawer */}
-<Drawer
-        sx={{
+            {/* left drawer */}
+            <Drawer
+            sx={{
             bgcolor: '#2A2B2F', 
             color: '#FEF9F6',
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }} />
-        <Divider sx={{ bgcolor: '#98FF00' }} />
-        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
-          {['Home', 'Explore', 'Guild', 'Profile'].map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#FEF9F6' }}>
-                  {icons[text]}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
-        <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
-        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
-                        Profile
-                    </Avatar>
+            },
+            }}
+            variant="permanent"
+            anchor="left"
+            >
+                <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }} />
+                <Divider sx={{ bgcolor: '#98FF00' }} />
+                <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
+                    {['Home', 'Explore', 'Guild', 'Profile'].map((text) => (
+                        <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon sx={{ color: '#FEF9F6' }}>
+                            {icons[text]}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+                    <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
+                    <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
+                    <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
+                                    Profile
+                                </Avatar>
 
-      </Drawer>
+                </Drawer>
+
             {/* posts */}
             <Box>
-            <Card sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', minWidth: 400 }}>
-                <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F' }}>
-                        Profile
-                    </Avatar>
-                }
-                title="Profile Name  @gamertag"
-                />
-                <CardContent>
-                    <Typography>
-                        Post Content...
-                    </Typography>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <CardActions sx={{ display: 'flex', justifyContent: 'space-evenly' }} disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                            <ModeCommentIcon sx={{ color: '#FEF9F6' }} />
-                         </IconButton>
-                        <IconButton aria-label="share">
-                            <FavoriteIcon sx={{ color: '#FEF9F6' }} />
-                         </IconButton>
-                    </CardActions>
-                </CardContent>
-            </Card>
-        </Box>
-{/* right drawer */}
-        <Drawer
-        sx={{
+                <Card sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', minWidth: 400 }}>
+                    <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F' }}>
+                            rofile
+                        </Avatar>
+                    }
+                    title="Profile Name  @gamertag"
+                    />
+                    <CardContent>
+                        <Typography>
+                            Post Content...
+                        </Typography>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <CardActions sx={{ display: 'flex', justifyContent: 'space-evenly' }} disableSpacing>
+                            <IconButton aria-label="add to favorites">
+                                <ModeCommentIcon sx={{ color: '#FEF9F6' }} />
+                            </IconButton>
+                            <IconButton aria-label="share">
+                                <FavoriteIcon sx={{ color: '#FEF9F6' }} />
+                            </IconButton>
+                        </CardActions>
+                    </CardContent>
+                </Card>
+            </Box>
+            {/* right drawer */}
+            <Drawer
+            sx={{
             bgcolor: '#2A2B2F', 
             color: '#FEF9F6',
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            flexShrink: 0,
+            '& .MuiDrawer-paper': {
             width: drawerWidth,
             boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="right"
-      >
-        <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }} />
-        <Divider sx={{ bgcolor: '#98FF00' }} />
-        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
-          {['Guild', 'Guild', 'Guild', 'Guild'].map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#FEF9F6' }}>
-                  {icons[text]}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
-        <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
-        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
-                        Profile
-                    </Avatar>
+            },
+            }}
+            variant="permanent"
+            anchor="right"
+            >
+                <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }} />
+                <Divider sx={{ bgcolor: '#98FF00' }} />
+                <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
+                    {['Guild', 'Guild', 'Guild', 'Guild'].map((text) => (
+                        <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon sx={{ color: '#FEF9F6' }}>
+                            {icons[text]}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                        </ListItem>
+                    ))}
+                </List>
+                <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
+                <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
+                <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
+                    Profile
+                </Avatar>
 
-      </Drawer>
+            </Drawer>
 
         </Box>
-    )
+    );
 }
 
 // export Home function
