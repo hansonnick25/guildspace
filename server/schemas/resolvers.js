@@ -1,6 +1,15 @@
 const { User, Post, Guild } = require('../models')
+const { signToken, AuthenticationError } = require('../utils/auth')
+
 const resolvers = {
   Query: {
+    getAllUsers: async () => {
+      return User.find()
+      .populate('guilds')
+      .populate('posts')
+      .populate('pals')
+    },
+
     getUser: async (parent, { username }) => {
       return User.findOne({ username })
         .populate('guilds')
@@ -28,7 +37,10 @@ const resolvers = {
     // User
     createUser: async (parent, { username, email, password }) => {
       const user = await User.create({ username, email, password })
-      return user
+
+      const token = signToken(user)
+
+      return { user, token }
     },
 
     login: async (parent, { email, password }) => {
