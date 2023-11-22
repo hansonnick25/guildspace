@@ -46,7 +46,7 @@ const typeDefs = gql`
     getPost(postId: ID!): Post
     getPosts(postId: ID!): [Post]
     getGuild(guildId: ID!): Guild
-    getGuilds(username: String): [Guild]
+    getGuilds: [Guild]
   }
 
   input UserInput {

@@ -30,7 +30,7 @@ const resolvers = {
     },
 
     getGuilds: async (parent, { username }) => {
-      return Guild.find({ username }).sort({ createdAt: -1 })
+      return Guild.find().sort({ createdAt: -1 })
     },
   },
   Mutation: {
