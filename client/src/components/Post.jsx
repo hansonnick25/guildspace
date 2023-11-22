@@ -21,8 +21,7 @@ function Post() {
                     Profile
                 </Avatar>
             }
-            title="Profile Name"
-            subheader="@gamertag"
+            title="Profile Name  @gamertag"
             />
             <CardContent>
                 <Typography>
