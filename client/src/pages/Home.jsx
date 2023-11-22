@@ -39,7 +39,7 @@ function Home() {
     
     return (
         <Box sx={{ display: 'flex', bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
-
+{/* left drawer */}
 <Drawer
         sx={{
             bgcolor: '#2A2B2F', 
@@ -68,14 +68,14 @@ function Home() {
             </ListItem>
           ))}
         </List>
-        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2,  }} variant="contained">Post</Button>
+        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
         <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
         <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
                         Profile
                     </Avatar>
 
       </Drawer>
-
+            {/* posts */}
             <Box>
             <Card sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', minWidth: 400 }}>
                 <CardHeader
@@ -105,6 +105,42 @@ function Home() {
                 </CardContent>
             </Card>
         </Box>
+{/* right drawer */}
+        <Drawer
+        sx={{
+            bgcolor: '#2A2B2F', 
+            color: '#FEF9F6',
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="permanent"
+        anchor="right"
+      >
+        <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }} />
+        <Divider sx={{ bgcolor: '#98FF00' }} />
+        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', }}>
+          {['Guild', 'Guild', 'Guild', 'Guild'].map((text) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon sx={{ color: '#FEF9F6' }}>
+                  {icons[text]}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Button sx={{ bgcolor: '#98FF00', color: '#2A2B2F', fontWeight: 'bolder', margin: 2, borderRadius: 5 }} variant="contained">Post</Button>
+        <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
+        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
+                        Profile
+                    </Avatar>
+
+      </Drawer>
 
         </Box>
     )
