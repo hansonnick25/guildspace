@@ -95,6 +95,6 @@ function Login() {
         </Box>
     </Box>
   );
-};
+}
 
 export default Login;

@@ -9,9 +9,9 @@ function Signup() {
     // set initial form state
     const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
     // set state for form validation
-    const [validated] = useState(false);
+    // const [validated] = useState(false);
     // set state for alert
-    const [showAlert, setShowAlert] = useState(false);
+    // const [showAlert, setShowAlert] = useState(false);
     // const [addUser] = useMutation(ADD_USER);
   
     const handleInputChange = (event) => {
@@ -43,7 +43,7 @@ function Signup() {
         Auth.login(token);
       } catch (err) {
         console.error(err);
-        setShowAlert(true);
+        // setShowAlert(true);
       }
   
       setUserFormData({
