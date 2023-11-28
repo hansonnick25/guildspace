@@ -36,7 +36,7 @@ export const QUERY_ME = gql`
           username
         }
       }
-      pals {
+      friends {
         _id
         username
       }
