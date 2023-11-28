@@ -47,6 +47,7 @@ const typeDefs = gql`
     getAllUsers: [User]
     getAllPosts: [Post]
     getAllGuilds: [Guild]
+    me: User
   }
 
   input UserInput {
