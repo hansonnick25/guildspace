@@ -1,38 +1,43 @@
-/* eslint-disable */
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
-const drawerWidth = 240;
+import { useState } from 'react'
+import {
+  Box,
+  Avatar,
+  IconButton,
+  Drawer,
+  Toolbar,
+  List,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListItemIcon,
+  Button,
+} from '@mui/material'
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
+import HomeIcon from '@mui/icons-material/Home'
+import Person2Icon from '@mui/icons-material/Person2'
+import SearchIcon from '@mui/icons-material/Search'
+import ShieldIcon from '@mui/icons-material/Shield'
 
 function LeftDrawer() {
+  const icons = {
+    Home: <HomeIcon />,
+    Explore: <SearchIcon />,
+    Guild: <ShieldIcon />,
+    Profile: <Person2Icon />,
+  }
+
+  const drawerWidth = 250
+  const [leftOpen, setLeftOpen] = useState(true)
+  const handleLeftDrawerOpen = () => setLeftOpen(true)
+  const handleLeftDrawerClose = () => setLeftOpen(false)
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
+    <Box>
       <Drawer
         sx={{
+          bgcolor: '#2A2B2F',
+          color: '#FEF9F6',
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -40,48 +45,61 @@ function LeftDrawer() {
             boxSizing: 'border-box',
           },
         }}
-        variant="permanent"
+        variant="persistent"
+        open={leftOpen}
         anchor="left"
       >
-        <Toolbar />
-        <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        <IconButton
+          aria-label="open drawer"
+          onClick={handleLeftDrawerClose}
+          edge="start"
+          sx={{ mr: 2, ...(!leftOpen && { display: 'none' }) }}
+        >
+          <KeyboardDoubleArrowLeftIcon />
+        </IconButton>
+        <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }} />
+        <Divider sx={{ bgcolor: '#98FF00' }} />
+        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
+          {['Home', 'Explore', 'Guild', 'Profile'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <ListItemIcon sx={{ color: '#FEF9F6' }}>
+                  {icons[text]}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <Button
+          sx={{
+            bgcolor: '#98FF00',
+            color: '#2A2B2F',
+            fontWeight: 'bolder',
+            margin: 2,
+            borderRadius: 5,
+          }}
+          variant="contained"
+        >
+          Post
+        </Button>
+        <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
+        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
+          Profile
+        </Avatar>
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-      >
-        <Toolbar />
-        <Typography paragraph>
-            Main content.
-        </Typography>
+      <Box>
+        <IconButton
+          aria-label="open drawer"
+          onClick={handleLeftDrawerOpen}
+          edge="start"
+          sx={{ mr: 2, ...(leftOpen && { display: 'none' }) }}
+        >
+          <KeyboardDoubleArrowRightIcon />
+        </IconButton>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default LeftDrawer;
+export default LeftDrawer
