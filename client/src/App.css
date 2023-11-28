@@ -2,3 +2,11 @@ body {
     background-color: #2a2b2e;
     color: #fdf9f7
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+}
