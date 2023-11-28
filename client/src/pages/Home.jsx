@@ -3,7 +3,7 @@ import LeftDrawer from '../components/LeftBar'
 import Post from '../components/Post'
 import RightDrawer from '../components/RightBar'
 import Login from '../components/Login';
-import Singup from '../components/Signup';
+// import Signup from '../components/Signup';
 
 function Home() {
   return (
@@ -13,6 +13,8 @@ function Home() {
     >
       <LeftDrawer />
       <Post />
+      <Login />
+      {/* <Signup /> */}
       <RightDrawer />
     </Box>
   )

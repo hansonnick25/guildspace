@@ -2,3 +2,10 @@ body {
     background-color: #2a2b2e;
     color: #fdf9f7
 }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
