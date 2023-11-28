@@ -8,14 +8,13 @@ const resolvers = {
       return User.findOne({ _id: userId })
         .populate('guilds')
         .populate('posts')
-        .populate('pals')
+        .populate('friends')
     },
 
     getPost: async (parent, { postId }) => {
-      return Post.findOne({ _id: postId })
-        .populate('author')
+      return Post.findOne({ _id: postId }).populate('author')
     },
-    
+
     getGuild: async (parent, { guildId }) => {
       return Guild.findOne({ _id: guildId })
         .populate('owner')
@@ -25,20 +24,17 @@ const resolvers = {
     // Get all models
     getAllUsers: async () => {
       return User.find()
-      .populate('guilds')
-      .populate('posts')
-      .populate('pals')
+        .populate('guilds')
+        .populate('posts')
+        .populate('friends')
     },
 
     getAllPosts: async () => {
-      return Post.find()
-      .populate('author')
+      return Post.find().populate('author')
     },
 
     getAllGuilds: async () => {
-      return Guild.find()
-      .populate('owner')
-      .populate('members')
+      return Guild.find().populate('owner').populate('members')
     },
   },
   Mutation: {
@@ -87,22 +83,22 @@ const resolvers = {
       return guild
     },
 
-    addPal: async (parent, { username, palUsername }) => {
-      const pal = await User.findOneAndUpdate(
+    addFriend: async (parent, { username, friendUsername }) => {
+      const friend = await User.findOneAndUpdate(
         { username },
-        { $addToSet: { pals: palUsername } },
+        { $addToSet: { friends: friendUsername } },
         { new: true }
       )
-      return pal
+      return friend
     },
 
-    removePal: async (parent, { username, palUsername }) => {
-      const pal = await User.findOneAndUpdate(
+    removeFriend: async (parent, { username, friendUsername }) => {
+      const friend = await User.findOneAndUpdate(
         { username },
-        { $pull: { pals: palUsername } },
+        { $pull: { friends: friendUsername } },
         { new: true }
       )
-      return pal
+      return friend
     },
 
     // Guilds
