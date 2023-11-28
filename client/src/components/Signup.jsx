@@ -97,7 +97,7 @@ function Signup() {
                     </TextField>
                     <Button
                     className='form'
-                    disabled={!(userFormData.email && userFormData.password)}
+                    disabled={!(userFormData.username && userFormData.email && userFormData.password)}
                     variant='contained'
                     type='submit'
                     >
