@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/server.js",
   "engines": {
-    "node": "v18.17.0",
+    "node": "v20.8.0",
     "npm": "9.6.7"
   },
   "scripts": {
@@ -24,6 +24,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
-    "apollo-server": "^3.13.0"
+    "apollo-server": "^3.13.0",
+    "mongodb": "^6.3.0"
   }
 }
