@@ -15,17 +15,11 @@ import {
 } from '@mui/material'
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
-import HomeIcon from '@mui/icons-material/Home'
-import Person2Icon from '@mui/icons-material/Person2'
-import SearchIcon from '@mui/icons-material/Search'
 import ShieldIcon from '@mui/icons-material/Shield'
 
 function RightDrawer() {
   const icons = {
-    Home: <HomeIcon />,
-    Explore: <SearchIcon />,
     Guild: <ShieldIcon />,
-    Profile: <Person2Icon />,
   }
 
   const drawerWidth = 250
