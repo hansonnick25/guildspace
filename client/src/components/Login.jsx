@@ -64,7 +64,7 @@ const Login = () => {
         <Box>
             <form onSubmit={handleFormSubmit}>
                 <TextField
-                className='text'
+                className='form'
                 type='text'
                 placeholder='your username'
                 onChange={handleInputChange}
@@ -74,7 +74,7 @@ const Login = () => {
                     Username
                 </TextField>
                 <TextField
-                className='text'
+                className='form'
                 type='password'
                 placeholder='your password'
                 onChange={handleInputChange}
@@ -83,7 +83,14 @@ const Login = () => {
                 >
                     Password
                 </TextField>
-                <Button></Button>
+                <Button
+                className='form'
+                disabled={!(userFormData.email && userFormData.password)}
+                variant='contained'
+                type='submit'
+                >
+                    Submit
+                </Button>
             </form>
         </Box>
     </Box>
