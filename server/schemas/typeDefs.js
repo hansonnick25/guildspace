@@ -7,7 +7,7 @@ const typeDefs = gql`
     email: String
     password: String
     guilds: [Guild]
-    pals: [User]
+    friends: [User]
     posts: [Post]
   }
 
@@ -71,8 +71,8 @@ const typeDefs = gql`
       password: String!
     ): User
     joinGuild(username: String!, guildId: ID!): User
-    addPal(username: String!, palUsername: String!): User
-    removePal(username: String!, palUsername: String!): User
+    addFriend(username: String!, friendUsername: String!): User
+    removeFriend(username: String!, friendUsername: String!): User
 
     createGuild(
       name: String!
