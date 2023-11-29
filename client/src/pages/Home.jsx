@@ -2,8 +2,9 @@ import Box from '@mui/material/Box'
 import LeftDrawer from '../components/LeftBar'
 import Post from '../components/Post'
 import RightDrawer from '../components/RightBar'
-import Login from '../components/Login';
-// import Signup from '../components/Signup';
+import Login from '../components/Login'
+import Signup from '../components/Signup'
+import AuthService from '../utils/auth'
 
 function Home() {
   return (
@@ -12,9 +13,13 @@ function Home() {
       justifyContent={'space-evenly'}
     >
       <LeftDrawer />
-      <Post />
-      <Login />
-      {/* <Signup /> */}
+      {AuthService.loggedIn ? (
+        <Post />
+      ) : (
+        <Box>
+          <Login /> <Signup />
+        </Box>
+      )}
       <RightDrawer />
     </Box>
   )
