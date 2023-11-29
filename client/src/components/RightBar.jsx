@@ -26,6 +26,11 @@ function RightDrawer() {
   const [rightOpen, setRightOpen] = useState(true)
   const handleRightDrawerOpen = () => setRightOpen(true)
   const handleRightDrawerClose = () => setRightOpen(false)
+
+  const handleClickCreateGuild = () => {
+    // do stuff
+  }
+
   return (
     <Box>
       <Drawer
@@ -74,13 +79,11 @@ function RightDrawer() {
             borderRadius: 5,
           }}
           variant="contained"
+          onClick={handleClickCreateGuild}
         >
-          Post
+          Create Guild
         </Button>
         <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
-        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
-          Profile
-        </Avatar>
       </Drawer>
       <Box>
         <IconButton
