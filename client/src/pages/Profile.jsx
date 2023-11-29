@@ -1,16 +1,19 @@
-import { Box, Card, CardHeader, CardContent } from '@mui/material'
+import { Box, Card, CardHeader, CardContent, Avatar } from '@mui/material'
 
 export default function Profile() {
   return (
-    <Box alignItems={'center'} sx={{ bgcolor: '#585a64', color: '#2A2B2F' }}>
-      <Card sx={{ width: 1200, height: 1000 }}>
-        <CardHeader title="Username" sx={{ textAlign: 'center' }} />
+    <Box alignItems={'center'} sx={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap' , bgcolor: '#585a64', color: '#2A2B2F' }}>
+      <Card sx={{ flexDirection: 'column', width: 1200, height: 600 }}>
+        <CardHeader title="Username" sx={{ textAlign: 'center', fontSize: 50 }} />
         <CardContent>
-          <Card>
+          <Avatar sx={{
+            bgcolor: '#98FF00', 
+          }} />
+          <Card sx={{ display: 'flex', flexDirection: 'row', p: 1, mx: 2, my: 10 }}>
             <CardHeader title="My posts" />
             <CardContent></CardContent>
           </Card>
-          <Card>
+          <Card sx={{ display: 'flex', flexDirection: 'row', p: 1, mx: 2, my: 10 }}>
             <CardHeader title="My Guilds" />
             <CardContent></CardContent>
           </Card>
