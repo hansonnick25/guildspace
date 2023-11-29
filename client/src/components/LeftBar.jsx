@@ -20,6 +20,10 @@ import Person2Icon from '@mui/icons-material/Person2'
 import SearchIcon from '@mui/icons-material/Search'
 import ShieldIcon from '@mui/icons-material/Shield'
 
+import { Link } from 'react-router-dom';
+
+const pages = ['home', 'guild', 'profile'];
+
 function LeftDrawer() {
   const icons = {
     Home: <HomeIcon />,
@@ -59,7 +63,28 @@ function LeftDrawer() {
         </IconButton>
         <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }} />
         <Divider sx={{ bgcolor: '#98FF00' }} />
-        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
+        <Box sx={{ 
+          bgcolor: '#2A2B2F', 
+          color: '#FEF9F6' 
+        }}
+        >
+          {pages.map((page) => (
+                <Button 
+                key={page} 
+                component={Link}
+                to={`/${page}`}
+                sx={{ 
+                    my: 2, 
+                    color: '#fff1e6', 
+                    display: 'flex', 
+                    fontSize: 'medium' 
+                    }}>
+                    {page}
+                </Button>
+            ))}
+          
+        </Box>
+{/*         <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
           {['Home', 'Explore', 'Guild', 'Profile'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -70,7 +95,7 @@ function LeftDrawer() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
         <Button
           sx={{
             bgcolor: '#98FF00',
