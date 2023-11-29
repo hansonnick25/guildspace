@@ -1,100 +1,121 @@
-import { useState } from 'react';
-// import { Form, Button, Alert } from 'react-bootstrap';
-import { Button, Box, TextField, Typography } from '@mui/material';
-
-import { useMutation } from '@apollo/client';
-// need to add mutation for logging in user
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
+import { useState } from 'react'
+import {
+  Button,
+  Box,
+  TextField,
+  Typography,
+  Card,
+  CardHeader,
+} from '@mui/material'
+import { useMutation } from '@apollo/client'
+import { LOGIN_USER } from '../utils/mutations'
+import Auth from '../utils/auth'
 
 function Login() {
-  const [userFormData, setUserFormData] = useState({ username: '', password: '' });
-//   const [validated] = useState(false);
-//   const [showAlert, setShowAlert] = useState(false);
-  const [login] = useMutation(LOGIN_USER);
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({
+    email: '',
+    password: '',
+  })
+  // set state for alert
+  const [showAlert, setShowAlert] = useState(false)
+  const [login] = useMutation(LOGIN_USER)
+  const [disabled, setDisabled] = useState(true)
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+  const handleInputChange = event => {
+    const { name, value } = event.target
+    setUserFormData({ ...userFormData, [name]: value })
+  }
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormBlur = event => {
+    if (event.target.email == 'email' && !userFormData.email) {
+      console.log('Please enter your email')
+    }
+    if (event.target.password == 'password' && !userFormData.password) {
+      console.log('Please enter your password')
+    }
+    if (userFormData.email && userFormData.password) {
+      setDisabled(false)
+    }
+  }
+
+  const handleFormSubmit = async event => {
+    event.preventDefault()
 
     // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
+    const form = event.currentTarget
     if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+      event.preventDefault()
+      event.stopPropagation()
     }
 
     try {
       const { data } = await login({
         variables: { ...userFormData },
-      });
+      })
 
       if (!data) {
-        throw new Error('something went wrong!');
+        throw new Error('something went wrong!')
       }
 
-      const { token, user } = data.login;
-      console.log(user);
-      Auth.login(token);
+      const { token, user } = data.login
+      console.log(user)
+      Auth.login(token)
     } catch (err) {
-      console.error(err);
-    //   setShowAlert(true);
+      console.error(err)
+      setShowAlert(true)
     }
 
     setUserFormData({
-      username: '',
+      email: '',
       password: '',
-    });
-  };
+    })
+  }
 
   return (
-    <Box sx={{ 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        }}
-        >
-        <Typography>
-            Login
-        </Typography>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Card>
+        {/* <Typography>Login</Typography> */}
+        <CardHeader title="Login" />
         <Box>
-            <form onSubmit={handleFormSubmit}>
-                <TextField
-                className='form'
-                type='text'
-                placeholder='your username'
-                onChange={handleInputChange}
-                value={userFormData.username}
-                required
-                >
-                    Username
-                </TextField>
-                <TextField
-                className='form'
-                type='password'
-                placeholder='your password'
-                onChange={handleInputChange}
-                value={userFormData.password}
-                required
-                >
-                    Password
-                </TextField>
-                <Button
-                className='form'
-                disabled={!(userFormData.email && userFormData.password)}
-                variant='contained'
-                type='submit'
-                >
-                    Submit
-                </Button>
-            </form>
+          <form onSubmit={handleFormSubmit}>
+            <TextField
+              className="form"
+              type="text"
+              placeholder="your email"
+              onChange={handleInputChange}
+              onBlur={handleFormBlur}
+              required
+              name="email"
+            />
+            <TextField
+              className="form"
+              type="password"
+              placeholder="your password"
+              onChange={handleInputChange}
+              onBlur={handleFormBlur}
+              required
+              name="password"
+            />
+            <Button
+              className="form"
+              disabled={disabled}
+              variant="contained"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </form>
         </Box>
+      </Card>
     </Box>
-  );
+  )
 }
 
-export default Login;
+export default Login

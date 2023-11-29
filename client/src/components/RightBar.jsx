@@ -26,6 +26,11 @@ function RightDrawer() {
   const [rightOpen, setRightOpen] = useState(true)
   const handleRightDrawerOpen = () => setRightOpen(true)
   const handleRightDrawerClose = () => setRightOpen(false)
+
+  const handleClickCreateGuild = () => {
+    // do stuff
+  }
+
   return (
     <Box>
       <Drawer
@@ -54,7 +59,7 @@ function RightDrawer() {
         <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }} />
         <Divider sx={{ bgcolor: '#98FF00' }} />
         <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
-          {['Guild', 'Guild', 'Guild', 'Guild'].map(text => (
+          {['Guild1', 'Guild2', 'Guild3', 'Guild4'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#FEF9F6' }}>
@@ -74,13 +79,11 @@ function RightDrawer() {
             borderRadius: 5,
           }}
           variant="contained"
+          onClick={handleClickCreateGuild}
         >
-          Post
+          Create Guild
         </Button>
         <Divider sx={{ bgcolor: '#98FF00', marginTop: 2 }} />
-        <Avatar sx={{ bgcolor: '#98FF00', color: '#2A2B2F', margin: 2 }}>
-          Profile
-        </Avatar>
       </Drawer>
       <Box>
         <IconButton
