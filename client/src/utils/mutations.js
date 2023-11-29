@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const LOGIN_USER = gql`
-  mutation LOGIN_USER($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
       user {
@@ -32,7 +32,7 @@ export const LOGIN_USER = gql`
 `
 
 export const ADD_USER = gql`
-  mutation ADD_USER($username: String!, $email: String!, $password: String!) {
+  mutation createUser($username: String!, $email: String!, $password: String!) {
     createUser(username: $username, email: $email, password: $password) {
       token
       user {
@@ -44,7 +44,7 @@ export const ADD_USER = gql`
 `
 
 export const CREATE_POST = gql`
-  mutation CREATE_POST(
+  mutation createPost(
     $title: String!
     $description: String
     $author: UserInput
@@ -58,7 +58,7 @@ export const CREATE_POST = gql`
 `
 
 export const CREATE_COMMENT = gql`
-  mutation CREATE_COMMENT(
+  mutation createComment(
     $postId: ID!
     $commentText: String!
     $commentAuthor: String!
@@ -78,7 +78,7 @@ export const CREATE_COMMENT = gql`
 `
 
 export const JOIN_GUILD = gql`
-  mutation JOIN_GUILD($username: String!, $guildId: ID!) {
+  mutation joinGuild($username: String!, $guildId: ID!) {
     joinGuild(username: $username, guildId: $guildId) {
       guilds {
         _id
