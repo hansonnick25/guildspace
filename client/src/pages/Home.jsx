@@ -13,7 +13,7 @@ function Home() {
       justifyContent={'space-evenly'}
     >
       <LeftDrawer />
-      {AuthService.loggedIn ? (
+      {AuthService.loggedIn() ? (
         <Post />
       ) : (
         <Box>
