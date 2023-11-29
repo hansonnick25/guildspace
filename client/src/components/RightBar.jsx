@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   Box,
-  Avatar,
   IconButton,
   Drawer,
   Toolbar,
