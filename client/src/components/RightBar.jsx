@@ -55,7 +55,7 @@ function RightDrawer() {
         </IconButton>
         <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }} />
         <Divider sx={{ bgcolor: '#98FF00' }} />
-        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6', textTransform: 'uppercase' }}>
+        <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
           {['Guild1', 'Guild2', 'Guild3', 'Guild4'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
