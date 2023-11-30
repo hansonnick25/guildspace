@@ -11,27 +11,23 @@ import GuildList from '../components/GuildList'
 export default function Profile() {
   const { username: userParam } = useParams()
 
+  console.log(`User param: ${userParam}`)
+
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { username: userParam },
   })
+  console.log(`Query user: ${QUERY_USER}\nQuery me: ${QUERY_ME}`)
 
   const user = data?.me || data?.user || {}
   // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (Auth.loggedIn() && Auth.getUser().data.username === userParam) {
     return <Navigate to="/profile" />
   }
 
+  console.log(`User: ${user}\nData: ${data}\nuserParams: ${userParam}`)
+
   if (loading) {
     return <div>Loading...</div>
-  }
-
-  if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    )
   }
 
   return (
@@ -64,6 +60,8 @@ export default function Profile() {
               {/* get guild name and post it as a card(?) */}
               <GuildList
                 guilds={user.guilds}
+                title={`${user.username}'s guilds`}
+                showTitle={false}
               />
             </CardContent>
           </Card>
