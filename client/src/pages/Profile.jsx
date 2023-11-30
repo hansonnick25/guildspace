@@ -1,12 +1,18 @@
-import { Box, Card, CardHeader, CardContent, Avatar } from '@mui/material'
+import { 
+  Box, 
+  Card, 
+  CardHeader, 
+  CardContent, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemButton } from '@mui/material'
+import { Link } from 'react-router-dom'
+import LeftDrawer from '../components/LeftBar'
+import RightDrawer from '../components/RightBar'
 
-import { Navigate } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
 
-import { QUERY_ME } from '../utils/queries'
-
-import Auth from '../utils/auth'
-// import GuildList from '../components/GuildList'
+const pages = ['my posts', 'my guilds'];
 
 export default function Profile() {
   // Step 2: Use useQuery to fetch data
@@ -24,34 +30,25 @@ export default function Profile() {
   }
 
   return (
-    <Box
-      alignItems={'center'}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-        bgcolor: '#585a64',
-        color: '#2A2B2F',
-      }}
-    >
-      {/* Check if user and user.posts are defined before mapping over them */}
-      {user &&
-        user.posts &&
-        user.posts.map(post => (
-          <Card key={post._id}>
-            <CardHeader title={post.title} />
-            <CardContent>{post.content}</CardContent>
-          </Card>
-        ))}
-      {/* Check if user and user.guilds are defined before mapping over them */}
-      {user &&
-        user.guilds &&
-        user.guilds.map(guild => (
-          <Card key={guild._id}>
-            <CardHeader title={guild.name} />
-            <CardContent>{guild.description}</CardContent>
-          </Card>
-        ))}
+    <Box display={'flex'} justifyContent={'space-evenly'} alignItems={'center'}>
+            <LeftDrawer />
+      <Card sx={{ width: 800, height: 1000 }}>
+        <CardHeader title="Username" sx={{ textAlign: 'center' }} />
+        <CardContent>
+        <List>
+              {pages.map(page => (
+                <ListItem key={page} disablePadding>
+                  <ListItemButton component={Link} to={`/${page}`}>
+                    <ListItemText
+                      primary={page.charAt(0).toUpperCase() + page.slice(1)}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+        </CardContent>
+      </Card>
+      <RightDrawer />
     </Box>
   )
 }

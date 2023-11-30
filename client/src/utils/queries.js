@@ -29,6 +29,11 @@ export const QUERY_ME = gql`
         name
         icon
         _id
+        members {
+          _id
+          username
+          email
+        }
       }
       posts {
         _id

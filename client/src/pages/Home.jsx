@@ -15,23 +15,23 @@ function Home() {
         <Post />
       ) : (
         <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-evenly'
-        }}
-        >
-          <Login /> 
-          <Typography
           sx={{
-            textAlign: 'center',
             display: 'flex',
-            justifyContent: 'center',
-            marginLeft: 5,
-            fontWeight: 'bolder',
-            fontSize: 'larger'
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
           }}
+        >
+          <Login />
+          <Typography
+            sx={{
+              textAlign: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              marginLeft: 5,
+              fontWeight: 'bolder',
+              fontSize: 'larger',
+            }}
           >
             OR
           </Typography>
