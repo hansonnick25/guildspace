@@ -13,22 +13,17 @@ export default function Profile() {
 
   console.log(`User param: ${userParam}`)
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  })
+  const { data } = useQuery(QUERY_ME)
   console.log(`Query user: ${QUERY_USER}\nQuery me: ${QUERY_ME}`)
 
-  const user = data?.me || data?.user || {}
+  const user = data.me
+
   // navigate to personal profile page if username is yours
   if (Auth.loggedIn() && Auth.getUser().data.username === userParam) {
     return <Navigate to="/profile" />
   }
 
   console.log(`User: ${user}\nData: ${data}\nuserParams: ${userParam}`)
-
-  if (loading) {
-    return <div>Loading...</div>
-  }
 
   return (
     <Box
