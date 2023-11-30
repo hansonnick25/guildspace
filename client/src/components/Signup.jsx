@@ -84,68 +84,59 @@ function Signup() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 10
+        padding: 10,
       }}
     >
       <Card>
         <CardHeader title="Sign Up" />
         <CardContent>
           <form onSubmit={handleFormSubmit}>
-            <div className='form-content'>
-            <TextField
-              className="form"
-              type="text"
-              placeholder="your username"
-              onChange={handleInputChange}
-              onBlur={handleFormBlur}
-              required
-              name="username"
-              sx={{
-                marginBottom: 2,
-              }}
-            >
-              Username
-            </TextField>
-            <TextField
-              className="form"
-              type="email"
-              placeholder="your email"
-              onChange={handleInputChange}
-              onBlur={handleFormBlur}
-              required
-              name="email"
-              sx={{
-                marginBottom: 2
-              }}
-            >
-              Email
-            </TextField>
-            <TextField
-              className="form"
-              type="password"
-              placeholder="your password"
-              onChange={handleInputChange}
-              onBlur={handleFormBlur}
-              required
-              name="password"
-              sx={{
-                marginBottom: 2
-              }}
-            >
-              Password
-            </TextField>
-            <Button
-              className="form"
-              disabled={disabled}
-              variant="contained"
-              type="submit"
-              sx={{
-                bgcolor: '#98FF00',
-                "&:hover": { bgcolor: '#2A2B2F' },
-              }}
-            >
-              Submit
-            </Button>
+            <div className="form-content">
+              <TextField
+                className="form"
+                type="text"
+                placeholder="your username"
+                onChange={handleInputChange}
+                onBlur={handleFormBlur}
+                required
+                name="username"
+                sx={{
+                  marginBottom: 2,
+                }}
+              >
+                Username
+              </TextField>
+              <TextField
+                className="form"
+                type="email"
+                placeholder="your email"
+                onChange={handleInputChange}
+                onBlur={handleFormBlur}
+                required
+                name="email"
+                sx={{
+                  marginBottom: 2,
+                }}
+              >
+                Email
+              </TextField>
+              <TextField
+                className="form"
+                type="password"
+                placeholder="your password"
+                onChange={handleInputChange}
+                onBlur={handleFormBlur}
+                required
+                name="password"
+                sx={{
+                  marginBottom: 2,
+                }}
+              >
+                Password
+              </TextField>
+              <Button className="form" disabled={disabled} type="submit">
+                Submit
+              </Button>
             </div>
           </form>
         </CardContent>
