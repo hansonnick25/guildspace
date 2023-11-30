@@ -27,6 +27,7 @@ export const QUERY_ME = gql`
       email
       guilds {
         name
+        description
         icon
         _id
         members {
