@@ -1,11 +1,12 @@
-import { Box, Card, CardHeader, CardContent, Avatar, List } from '@mui/material'
+import { Box, Card, CardHeader, CardContent, Avatar } from '@mui/material'
 
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 
 import { QUERY_ME, QUERY_USER } from '../utils/queries'
 
 import Auth from '../utils/auth'
+import GuildList from '../components/GuildList'
 
 export default function Profile() {
   const { username: userParam } = useParams()
@@ -60,14 +61,10 @@ export default function Profile() {
           >
             <CardHeader title="My posts" />
             <CardContent>
-              <List>
-                {user.guilds.map(guild => (
-                  // get guild name and post it as a card(?)
-                  <Card key={guild.id}>
-                    <Link to={`/guilds/${guild.id}`}>{guild.name}</Link>
-                  </Card>
-                ))}
-              </List>
+              {/* get guild name and post it as a card(?) */}
+              <GuildList
+                guilds={user.guilds}
+              />
             </CardContent>
           </Card>
           <Card
