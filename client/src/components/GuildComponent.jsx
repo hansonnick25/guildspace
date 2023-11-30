@@ -31,10 +31,27 @@ function GuildComponent() {
     <Box>
       <Card variant="outlined">
         <CardMedia sx={{ height: 100 }} image="" title="guild logo" />
-        <CardHeader title="Guild Name"></CardHeader>
+        <CardHeader
+          sx={{
+            textAlign: 'center',
+          }}
+          title="Guild Name"
+        ></CardHeader>
         <CardContent>
-          <Typography variant="body1">Guild Desc</Typography>
-          <Card>
+          <Typography
+            sx={{
+              textAlign: 'center',
+              padding: 2,
+            }}
+            variant="body1"
+          >
+            Guild Desc
+          </Typography>
+          <Card
+            sx={{
+              bgcolor: '#98FF00',
+            }}
+          >
             <CardHeader title="Guild Roster"></CardHeader>
             <CardContent>
               <TableContainer>
@@ -51,7 +68,13 @@ function GuildComponent() {
                   </TableHead>
                   <TableBody>
                     {rows.map(row => (
-                      <TableRow key={row.username}>
+                      <TableRow
+                        sx={{
+                          bgcolor: '#008F11',
+                          opacity: 0.5,
+                        }}
+                        key={row.username}
+                      >
                         <TableCell component="th" scope="row">
                           <Typography>{row.username}</Typography>
                         </TableCell>
@@ -68,6 +91,7 @@ function GuildComponent() {
 
           <Button
             sx={{
+              '&:hover': { bgcolor: '#2A2B2F', color: '#FEF9F6' },
               bgcolor: '#98FF00',
               color: '#2A2B2F',
               fontWeight: 'bolder',
