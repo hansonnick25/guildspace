@@ -6,6 +6,7 @@ import {
   Typography,
   Card,
   CardHeader,
+  CardContent,
 } from '@mui/material'
 import { useMutation } from '@apollo/client'
 import { LOGIN_USER } from '../utils/mutations'
@@ -78,54 +79,44 @@ function Login() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        padding: 5
+        padding: 5,
       }}
     >
       <Card>
-        {/* <Typography>Login</Typography> */}
         <CardHeader title="Login" />
-        <Box>
+        <CardContent>
           <form onSubmit={handleFormSubmit}>
-            <div className='form-content'>
-            <TextField
-              className="form"
-              type="text"
-              placeholder="your email"
-              onChange={handleInputChange}
-              onBlur={handleFormBlur}
-              required
-              name="email"
-              sx={{
-                marginBottom: 2
-              }}
-            />
-            <TextField
-              className="form"
-              type="password"
-              placeholder="your password"
-              onChange={handleInputChange}
-              onBlur={handleFormBlur}
-              required
-              name="password"
-              sx={{
-                marginBottom: 2
-              }}
-            />
-            <Button
-              className="form"
-              disabled={disabled}
-              variant="contained"
-              type="submit"
-              sx={{
-                bgcolor: '#98FF00',
-                "&:hover": { bgcolor: '#2A2B2F' },
-              }}
-            >
-              Submit
-            </Button>
+            <div className="form-content">
+              <TextField
+                className="form"
+                type="text"
+                placeholder="your email"
+                onChange={handleInputChange}
+                onBlur={handleFormBlur}
+                required
+                name="email"
+                sx={{
+                  marginBottom: 2,
+                }}
+              />
+              <TextField
+                className="form"
+                type="password"
+                placeholder="your password"
+                onChange={handleInputChange}
+                onBlur={handleFormBlur}
+                required
+                name="password"
+                sx={{
+                  marginBottom: 2,
+                }}
+              />
+              <Button className="form" disabled={disabled} type="submit">
+                Submit
+              </Button>
             </div>
           </form>
-        </Box>
+        </CardContent>
       </Card>
     </Box>
   )
