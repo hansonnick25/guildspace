@@ -5,14 +5,12 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
+        return User.findOne({ _id: context.user._id })
           .populate('guilds')
           .populate('posts')
           .populate('friends')
-
-        return userData
       }
+      console.log(`Context: ${context}`)
       throw AuthenticationError
     },
 
