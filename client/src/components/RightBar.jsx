@@ -16,7 +16,10 @@ import {
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 import SecurityIcon from '@mui/icons-material/Security'
-function RightDrawer() {
+import { useQuery } from '@apollo/client'
+import { QUERY_ME } from '../utils/queries'
+
+const RightDrawer = () => {
   const guildIcon = <SecurityIcon />
 
   const [rightOpen, setRightOpen] = useState(true)
@@ -26,6 +29,10 @@ function RightDrawer() {
   const handleClickCreateGuild = () => {
     // do stuff
   }
+  const { loading, error, data } = useQuery(QUERY_ME)
+
+  if (loading) return 'Loading...'
+  if (error) return `Error! ${error.message}`
 
   return (
     <Box>
@@ -41,13 +48,11 @@ function RightDrawer() {
         <Card sx={{ bgcolor: '#003b00', boxShadow: 5 }}>
           <CardContent>
             <List>
-              {['Guild1', 'Guild2', 'Guild3', 'Guild4'].map(text => (
-                <ListItem key={text} disablePadding>
+              {data.me.guilds.map((guild, index) => (
+                <ListItem key={index}>
                   <ListItemButton>
-                    <ListItemIcon sx={{ color: 'white' }}>
-                      {guildIcon}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
+                    <ListItemIcon>{guildIcon}</ListItemIcon>
+                    <ListItemText primary={guild.name} />
                   </ListItemButton>
                 </ListItem>
               ))}
