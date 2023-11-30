@@ -12,12 +12,13 @@ const GuildPage = () => {
       <LeftDrawer />
       {create ? (
         <Box>
-          <Button onClick={() => setCreate(true)}>Create Guild</Button>
-          <GuildComponent />
+          <Button onClick={() => setCreate(false)}>View Guilds</Button>
+          <CreateGuild />
         </Box>
       ) : (
         <Box>
-          <CreateGuild />
+          <Button onClick={() => setCreate(true)}>Create Guild</Button>
+          <GuildComponent />
         </Box>
       )}
       <RightDrawer />

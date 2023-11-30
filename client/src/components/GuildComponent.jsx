@@ -1,120 +1,60 @@
-import { useState, useEffect } from 'react'
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Typography,
-  CardHeader,
-} from '@mui/material'
+import React from 'react'
 import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  List,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material'
 
 const GuildComponent = () => {
-  const data = useQuery(QUERY_ME)
-  const [userData, setUserData] = useState()
+  const { loading, error, data } = useQuery(QUERY_ME)
 
-  useEffect(() => {
-    if (data) {
-      setUserData(data.me)
-    }
-  })
-  const createData = (username, email) => {
-    return { username, email }
+  if (loading) {
+    return <p>Loading...</p>
   }
 
-  // TODO: Find a way to join a guild based on context
-  const joinGuild = () => {
-    console.log('Join Guild function called')
+  if (error) {
+    return <p>Error: {error.message}</p>
   }
 
-  const rows = [createData('Owner', 'owner@gmail.com')]
+  const { guilds } = data.me
+
   return (
     <Box>
-      <Card variant="outlined">
-        {/* <CardMedia sx={{ height: 100 }} image="" title="guild logo" /> */}
-
-        <CardHeader
-          sx={{
-            textAlign: 'center',
-          }}
-          title="Guild Name"
-        ></CardHeader>
-        <CardContent>
-          <Typography
-            sx={{
-              textAlign: 'center',
-              padding: 2,
-            }}
-            variant="body1"
-          >
-            Guild Desc
-          </Typography>
-          <Card
-            sx={{
-              bgcolor: '#98FF00',
-            }}
-          >
-            <CardHeader title="Guild Roster"></CardHeader>
-            <CardContent>
-              <TableContainer>
-                <Table
-                  sx={{ minWidth: 650 }}
-                  size="small"
-                  aria-label="guild roster"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Username</TableCell>
-                      <TableCell>Email</TableCell>
+      {guilds.map(guild => (
+        <Card key={guild._id} className="guild-card">
+          <CardHeader title={guild.name} />
+          <CardContent>
+            <TableContainer component={Card}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Username</TableCell>
+                    <TableCell>Email</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {guild.members.map(member => (
+                    <TableRow key={member._id}>
+                      <TableCell>{member.username}</TableCell>
+                      <TableCell>{member.email}</TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map(row => (
-                      <TableRow
-                        sx={{
-                          bgcolor: '#008F11',
-                          opacity: 0.5,
-                        }}
-                        key={row.username}
-                      >
-                        <TableCell component="th" scope="row">
-                          <Typography>{row.username}</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>{row.email}</Typography>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </CardContent>
-          </Card>
-
-          <Button
-            sx={{
-              '&:hover': { bgcolor: '#2A2B2F', color: '#FEF9F6' },
-              bgcolor: '#98FF00',
-              color: '#2A2B2F',
-              fontWeight: 'bolder',
-              margin: 2,
-              borderRadius: 5,
-            }}
-            variant="contained"
-            onClick={() => joinGuild()}
-          >
-            Join
-          </Button>
-        </CardContent>
-      </Card>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </CardContent>
+        </Card>
+      ))}
     </Box>
   )
 }
