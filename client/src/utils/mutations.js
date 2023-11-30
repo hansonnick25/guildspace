@@ -76,6 +76,15 @@ export const CREATE_COMMENT = gql`
     }
   }
 `
+export const CREATE_GUILD = gql`
+  mutation createGuild($name: String!, $description: String!) {
+    createGuild(name: $name, description: $description) {
+      _id
+      name
+      description
+    }
+  }
+`
 
 export const JOIN_GUILD = gql`
   mutation joinGuild($username: String!, $guildId: ID!) {

@@ -20,12 +20,16 @@ import Person2Icon from '@mui/icons-material/Person2'
 import SearchIcon from '@mui/icons-material/Search'
 import ShieldIcon from '@mui/icons-material/Shield'
 
+import { Link } from 'react-router-dom';
+
+const pages = ['home', 'guild', 'profile'];
+
 function LeftDrawer() {
   const icons = {
-    Home: <HomeIcon />,
-    Explore: <SearchIcon />,
-    Guild: <ShieldIcon />,
-    Profile: <Person2Icon />,
+    home: <HomeIcon />,
+    // Explore: <SearchIcon />,
+    guild: <ShieldIcon />,
+    profile: <Person2Icon />,
   }
 
   const drawerWidth = 250
@@ -60,6 +64,16 @@ function LeftDrawer() {
         <Toolbar sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }} />
         <Divider sx={{ bgcolor: '#98FF00' }} />
         <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
+          {pages.map((page) => (
+            <ListItem key={page} disablePadding>
+              <ListItemButton component={Link} to={`/${page}`} sx={{ my: 2, color: '#fff1e6', display: 'flex', fontSize: 'medium' }}>
+                <ListItemIcon sx={{ color: '#FEF9F6' }}>{icons[page]}</ListItemIcon>
+                <ListItemText primary={page.charAt(0).toUpperCase() + page.slice(1)} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+{/*         <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
           {['Home', 'Explore', 'Guild', 'Profile'].map(text => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
@@ -70,7 +84,7 @@ function LeftDrawer() {
               </ListItemButton>
             </ListItem>
           ))}
-        </List>
+        </List> */}
         <Button
           sx={{
             bgcolor: '#98FF00',

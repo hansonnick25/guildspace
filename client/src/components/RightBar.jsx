@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import {
   Box,
-  Avatar,
   IconButton,
   Drawer,
   Toolbar,
@@ -18,9 +17,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import ShieldIcon from '@mui/icons-material/Shield'
 
 function RightDrawer() {
-  const icons = {
-    Guild: <ShieldIcon />,
-  }
+  const guildIcon = <ShieldIcon />
 
   const drawerWidth = 250
   const [rightOpen, setRightOpen] = useState(true)
@@ -63,7 +60,7 @@ function RightDrawer() {
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon sx={{ color: '#FEF9F6' }}>
-                  {icons[text]}
+                  {guildIcon}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

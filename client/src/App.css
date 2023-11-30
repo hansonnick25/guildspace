@@ -10,3 +10,14 @@ body {
     justify-content: space-evenly;
     padding: 5px;
 }
+
+.text-field {
+    display: flex;
+    flex-direction: column;
+}
+.form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+}
