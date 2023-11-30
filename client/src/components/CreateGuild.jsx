@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Card, CardContent, CardHeader, TextField, Button } from '@mui/material'
-import { useMutation } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
+import { QUERY_ME } from '../utils/queries'
 import { CREATE_GUILD } from '../utils/mutations'
+import Auth from '../utils/auth'
 
 const CreateGuild = () => {
   const [guildFormData, setGuildFormData] = useState({
@@ -9,8 +11,9 @@ const CreateGuild = () => {
     description: '',
     icons: '',
   })
-  // set state for alert
+
   const [showAlert, setShowAlert] = useState(false)
+  const { data } = useQuery(QUERY_ME) // Destructure data from useQuery result
   const [createGuild] = useMutation(CREATE_GUILD)
   const [disabled, setDisabled] = useState(true)
 
@@ -30,10 +33,27 @@ const CreateGuild = () => {
     ) {
       console.log('Please enter your guild description')
     }
+
     if (guildFormData.name && guildFormData.description) {
       setDisabled(false)
     }
   }
+
+  // const handleFormBlur = event => {
+  //   if (event.target.name == 'name' && !guildFormData.name) {
+  //     console.log('Please enter your guild name')
+  //   }
+  //   // console.log(event.target)
+  //   if (
+  //     event.target.description == 'description' &&
+  //     !guildFormData.description
+  //   ) {
+  //     console.log('Please enter your guild description')
+  //   }
+  //   if (guildFormData.name && guildFormData.description) {
+  //     setDisabled(false)
+  //   }
+  // }
 
   const handleFormSubmit = async event => {
     event.preventDefault()
@@ -43,6 +63,12 @@ const CreateGuild = () => {
     if (form.checkValidity() === false) {
       event.preventDefault()
       event.stopPropagation()
+    }
+
+    const token = Auth.loggedIn() ? Auth.getToken() : null
+    console.log(token)
+    if (!token) {
+      return false
     }
 
     try {

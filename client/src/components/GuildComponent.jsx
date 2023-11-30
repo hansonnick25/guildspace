@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   Box,
   Button,
@@ -13,24 +14,33 @@ import {
   Typography,
   CardHeader,
 } from '@mui/material'
+import { useQuery } from '@apollo/client'
+import { QUERY_ME } from '../utils/queries'
 
-// TODO: Find a way to pull from data and fill in
-function createData(username, email) {
-  return { username, email }
-}
+const GuildComponent = () => {
+  const data = useQuery(QUERY_ME)
+  const [userData, setUserData] = useState()
 
-// TODO: Find a way to join a guild based on context
-function joinGuild() {
-  console.log('Join Guild function called')
-}
+  useEffect(() => {
+    if (data) {
+      setUserData(data.me)
+    }
+  })
+  const createData = (username, email) => {
+    return { username, email }
+  }
 
-const rows = [createData('Owner', 'owner@gmail.com')]
+  // TODO: Find a way to join a guild based on context
+  const joinGuild = () => {
+    console.log('Join Guild function called')
+  }
 
-function GuildComponent() {
+  const rows = [createData('Owner', 'owner@gmail.com')]
   return (
     <Box>
       <Card variant="outlined">
-        <CardMedia sx={{ height: 100 }} image="" title="guild logo" />
+        {/* <CardMedia sx={{ height: 100 }} image="" title="guild logo" /> */}
+
         <CardHeader
           sx={{
             textAlign: 'center',
