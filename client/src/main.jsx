@@ -5,6 +5,8 @@ import App from './App.jsx'
 import Home from './pages/Home'
 import GuildPage from './pages/GuildPage';
 import Profile from './pages/Profile';
+import GuildComponent from './components/GuildComponent';
+import Post from './components/Post';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/my posts',
+        element: <Post />,
+      },
+      {
+        path: '/my guilds',
+        element: <GuildComponent />,
       },
     ],
   },

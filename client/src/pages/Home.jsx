@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box'
+import { Typography } from '@mui/material'
 import LeftDrawer from '../components/LeftBar'
 import Post from '../components/Post'
 import RightDrawer from '../components/RightBar'
@@ -13,8 +14,28 @@ function Home() {
       {AuthService.loggedIn() ? (
         <Post />
       ) : (
-        <Box>
-          <Login /> <Signup />
+        <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-evenly'
+        }}
+        >
+          <Login /> 
+          <Typography
+          sx={{
+            textAlign: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            marginLeft: 5,
+            fontWeight: 'bolder',
+            fontSize: 'larger'
+          }}
+          >
+            OR
+          </Typography>
+          <Signup />
         </Box>
       )}
       <RightDrawer />
