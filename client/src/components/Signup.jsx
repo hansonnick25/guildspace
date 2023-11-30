@@ -84,12 +84,14 @@ function Signup() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        padding: 10
       }}
     >
       <Card>
         <CardHeader title="Sign Up" />
         <CardContent>
           <form onSubmit={handleFormSubmit}>
+            <div className='form-content'>
             <TextField
               className="form"
               type="text"
@@ -98,6 +100,9 @@ function Signup() {
               onBlur={handleFormBlur}
               required
               name="username"
+              sx={{
+                marginBottom: 2,
+              }}
             >
               Username
             </TextField>
@@ -109,6 +114,9 @@ function Signup() {
               onBlur={handleFormBlur}
               required
               name="email"
+              sx={{
+                marginBottom: 2
+              }}
             >
               Email
             </TextField>
@@ -120,6 +128,9 @@ function Signup() {
               onBlur={handleFormBlur}
               required
               name="password"
+              sx={{
+                marginBottom: 2
+              }}
             >
               Password
             </TextField>
@@ -128,9 +139,14 @@ function Signup() {
               disabled={disabled}
               variant="contained"
               type="submit"
+              sx={{
+                bgcolor: '#98FF00',
+                "&:hover": { bgcolor: '#2A2B2F' },
+              }}
             >
               Submit
             </Button>
+            </div>
           </form>
         </CardContent>
       </Card>

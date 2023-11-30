@@ -78,6 +78,7 @@ function Login() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        padding: 5
       }}
     >
       <Card>
@@ -85,6 +86,7 @@ function Login() {
         <CardHeader title="Login" />
         <Box>
           <form onSubmit={handleFormSubmit}>
+            <div className='form-content'>
             <TextField
               className="form"
               type="text"
@@ -93,6 +95,9 @@ function Login() {
               onBlur={handleFormBlur}
               required
               name="email"
+              sx={{
+                marginBottom: 2
+              }}
             />
             <TextField
               className="form"
@@ -102,15 +107,23 @@ function Login() {
               onBlur={handleFormBlur}
               required
               name="password"
+              sx={{
+                marginBottom: 2
+              }}
             />
             <Button
               className="form"
               disabled={disabled}
               variant="contained"
               type="submit"
+              sx={{
+                bgcolor: '#98FF00',
+                "&:hover": { bgcolor: '#2A2B2F' },
+              }}
             >
               Submit
             </Button>
+            </div>
           </form>
         </Box>
       </Card>
