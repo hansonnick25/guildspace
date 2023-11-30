@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  Link,
   List,
   ListItem,
   ListItemText,
@@ -27,6 +28,13 @@ const Profile = () => {
 
   return (
     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+      <Box display={'flex'} justifyContent={'flex-start'} width={'100%'}>
+        <Typography variant='h3'>
+          <Link href={'/'} underline="hover">
+            Back to Home
+          </Link>
+        </Typography>
+      </Box>
       <Typography variant="h1">{`${username}'s profile`}</Typography>
       <Card sx={{ minWidth: 600, minHeight: 300 }}>
         <CardHeader title="Guilds" />
