@@ -67,10 +67,17 @@ const CreateGuild = () => {
   }
 
   return (
-    <Card>
+    <Card
+    sx={{
+      margin: 10
+    }}
+    >
       <CardHeader
         title="Create Your Guild"
         subheader="Join Forces to Fight Evil!"
+        sx={{
+          textAlign: 'center'
+        }}
       />
       <CardContent>
         <form onSubmit={handleFormSubmit}>
@@ -82,6 +89,9 @@ const CreateGuild = () => {
             onBlur={handleFormBlur}
             required
             name="name"
+            sx={{
+              margin: 2
+            }}
           />
           <TextField
             className="form"
@@ -91,12 +101,18 @@ const CreateGuild = () => {
             onBlur={handleFormBlur}
             required
             name="description"
+            sx={{
+              margin: 2
+            }}
           />
           <Button
             className="form"
             disabled={disabled}
             variant="contained"
             type="submit"
+            sx={{
+              margin: 2
+            }}
           >
             Submit
           </Button>
