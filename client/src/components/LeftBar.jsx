@@ -73,18 +73,6 @@ function LeftDrawer() {
             </ListItem>
           ))}
         </List>
-{/*         <List sx={{ bgcolor: '#2A2B2F', color: '#FEF9F6' }}>
-          {['Home', 'Explore', 'Guild', 'Profile'].map(text => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: '#FEF9F6' }}>
-                  {icons[text]}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List> */}
         <Button
           sx={{
             bgcolor: '#98FF00',
