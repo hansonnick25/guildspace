@@ -8,13 +8,17 @@ import {
   ListItemText, 
   ListItemButton } from '@mui/material'
 import { Link } from 'react-router-dom'
+import LeftDrawer from '../components/LeftBar'
+import RightDrawer from '../components/RightBar'
+
 
 const pages = ['my posts', 'my guilds'];
 
 export default function Profile() {
   return (
-    <Box alignItems={'center'} sx={{ bgcolor: '#585a64', color: '#2A2B2F' }}>
-      <Card sx={{ width: 1200, height: 1000 }}>
+    <Box display={'flex'} justifyContent={'space-evenly'} alignItems={'center'}>
+            <LeftDrawer />
+      <Card sx={{ width: 800, height: 1000 }}>
         <CardHeader title="Username" sx={{ textAlign: 'center' }} />
         <CardContent>
         <List>
@@ -28,16 +32,9 @@ export default function Profile() {
                 </ListItem>
               ))}
             </List>
-          {/* <Card>
-            <CardHeader title="My posts" />
-            <CardContent></CardContent>
-          </Card>
-          <Card>
-            <CardHeader title="My Guilds" />
-            <CardContent></CardContent>
-          </Card> */}
         </CardContent>
       </Card>
+      <RightDrawer />
     </Box>
   )
 }
