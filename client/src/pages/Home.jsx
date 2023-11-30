@@ -15,11 +15,11 @@ function Home() {
     >
       <LeftDrawer />
       {AuthService.loggedIn() ? (
-        <Post />
+        <Profile />
       ) : (
         <Box>
           {/* <Login /> <Signup /> */}
-          <Profile />
+          
         </Box>
       )}
       <RightDrawer />
