@@ -1,4 +1,12 @@
-import { Box, Card, CardHeader, CardContent, List, ListItem, ListItemText, ListItemIcon, ListItemButton } from '@mui/material'
+import { 
+  Box, 
+  Card, 
+  CardHeader, 
+  CardContent, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  ListItemButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const pages = ['my posts', 'my guilds'];
