@@ -11,24 +11,28 @@ module.exports = {
     },
   }),
   authMiddleware: function ({ req }) {
-    let token = req.body.token || req.query.token || req.headers.authorization
+    // allows token to be sent via  req.query or headers
+    let token = req.query.token || req.headers.authorization
 
+    // ["Bearer", "<tokenvalue>"]
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim()
     }
 
-    if (!token) {
-      return req
+    let user
+
+    if (token) {
+      // verify token and get user data out of it
+      try {
+        const { data } = jwt.verify(token, secret, { maxAge: expiration })
+        user = data
+      } catch {
+        console.log('Invalid token')
+      }
     }
 
-    try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration })
-      req.user = data
-    } catch {
-      console.log('Invalid token')
-    }
-
-    return req
+    // return context object
+    return { user }
   },
   signToken: function ({ email, username, _id }) {
     const payload = { email, username, _id }

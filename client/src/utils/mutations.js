@@ -82,6 +82,12 @@ export const CREATE_GUILD = gql`
       _id
       name
       description
+      members {
+        _id
+      }
+      owner {
+        _id
+      }
     }
   }
 `

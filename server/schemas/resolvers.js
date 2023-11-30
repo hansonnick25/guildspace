@@ -3,6 +3,19 @@ const { signToken, AuthenticationError } = require('../utils/auth')
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('guilds')
+          .populate('posts')
+          .populate('friends')
+
+        return userData
+      }
+      throw AuthenticationError
+    },
+
     // Get all models inidividually
     getUser: async (parent, { userId }) => {
       return User.findOne({ _id: userId })
@@ -65,22 +78,28 @@ const resolvers = {
       return { token, user }
     },
 
-    updateUser: async (parent, { _id, username, email, password }) => {
-      const user = await User.findOneAndUpdate(
-        { _id },
-        { username, email, password },
-        { new: true }
-      )
-      return user
+    updateUser: async (parent, { username, email, password }, context) => {
+      if (context.user) {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { username, email, password },
+          { new: true }
+        )
+        return user
+      }
+      throw AuthenticationError
     },
 
-    joinGuild: async (parent, { username, guildId }) => {
-      const guild = await User.findOneAndUpdate(
-        { username },
-        { $addToSet: { guilds: guildId } },
-        { new: true }
-      )
-      return guild
+    joinGuild: async (parent, { guildId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { guilds: guildId } },
+          { new: true }
+        ).populate('guilds')
+        return updatedUser
+      }
+      throw AuthenticationError
     },
 
     addFriend: async (parent, { username, friendUsername }) => {
@@ -102,23 +121,51 @@ const resolvers = {
     },
 
     // Guilds
-    createGuild: async (parent, { name, description, icon, owner }) => {
-      const guild = await Guild.create({ name, description, icon, owner })
-      return guild
+    createGuild: async (parent, { name, description, icon }, context) => {
+      if (context.user) {
+        const guild = await Guild.create({
+          name,
+          description,
+          icon,
+          owner: context.user._id,
+        })
+
+        // add owner to members as well
+        const guildWithOwner = await Guild.findOneAndUpdate(
+          { _id: guild._id },
+          { $addToSet: { members: context.user._id } },
+          { new: true }
+        )
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { guilds: guild._id } },
+          { new: true }
+        )
+
+        return guildWithOwner
+      }
+
+      throw AuthenticationError
     },
 
-    updateGuild: async (parent, { _id, name, description, icon, owner }) => {
-      const guild = await Guild.findOneAndUpdate(
-        { _id },
-        { name, description, icon, owner },
-        { new: true }
-      )
-      return guild
+    updateGuild: async (parent, args, context) => {
+      if (context.user) {
+        const guild = await Guild.findOneAndUpdate(
+          { _id: args._id },
+          { ...args },
+          { new: true }
+        )
+        return guild
+      }
+      throw AuthenticationError
     },
 
-    deleteGuild: async (parent, { _id }) => {
-      const guild = await Guild.findOneAndDelete({ _id })
-      return guild
+    deleteGuild: async (parent, { _id }, context) => {
+      if (context.user) {
+        const guild = await Guild.findOneAndDelete({ _id })
+        return guild
+      }
     },
 
     // Posts
