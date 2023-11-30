@@ -22,7 +22,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
 import Auth from '../utils/auth'
 
-const pages = ['home', 'guild', 'profile']
+const pages = ['guild', 'profile']
 
 function LeftDrawer() {
   const handleLogout = () => {
@@ -54,6 +54,14 @@ function LeftDrawer() {
         <Card>
           <CardContent>
             <List>
+              <ListItem disablePadding>
+                <ListItemButton component={Link} to={'/'}>
+                  <ListItemIcon sx={{ color: 'white' }}>
+                    {icons.home}
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItemButton>
+              </ListItem>
               {pages.map(page => (
                 <ListItem key={page} disablePadding>
                   <ListItemButton component={Link} to={`/${page}`}>
