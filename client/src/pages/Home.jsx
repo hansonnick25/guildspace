@@ -8,10 +8,7 @@ import AuthService from '../utils/auth'
 
 function Home() {
   return (
-    <Box
-      sx={{ display: 'flex', bgcolor: '#2A2B2F', color: '#FEF9F6' }}
-      justifyContent={'space-evenly'}
-    >
+    <Box display={'flex'} justifyContent={'space-evenly'}>
       <LeftDrawer />
       {AuthService.loggedIn() ? (
         <Post />
