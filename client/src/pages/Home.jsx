@@ -2,9 +2,8 @@ import Box from '@mui/material/Box'
 import LeftDrawer from '../components/LeftBar'
 import Post from '../components/Post'
 import RightDrawer from '../components/RightBar'
-// import Login from '../components/Login'
-// import Signup from '../components/Signup'
-import Profile from '../pages/Profile'
+import Login from '../components/Login'
+import Signup from '../components/Signup'
 import AuthService from '../utils/auth'
 
 function Home() {
@@ -15,11 +14,10 @@ function Home() {
     >
       <LeftDrawer />
       {AuthService.loggedIn() ? (
-        <Profile />
+        <Post />
       ) : (
         <Box>
-          {/* <Login /> <Signup /> */}
-          
+          <Login /> <Signup />
         </Box>
       )}
       <RightDrawer />
