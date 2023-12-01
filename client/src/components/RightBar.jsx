@@ -26,9 +26,6 @@ const RightDrawer = () => {
   const handleRightDrawerOpen = () => setRightOpen(true)
   const handleRightDrawerClose = () => setRightOpen(false)
 
-  const handleClickCreateGuild = () => {
-    // do stuff
-  }
   const { loading, error, data } = useQuery(QUERY_ME)
 
   if (loading) return 'Loading...'
