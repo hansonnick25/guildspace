@@ -57,7 +57,7 @@ const RightDrawer = () => {
                 </ListItem>
               ))}
             </List>
-            <Button component={Link} to={'/guild'}>
+            <Button component={Link} href={'/guild'}>
               Create Guild
             </Button>
           </CardContent>
