@@ -56,7 +56,13 @@ function Home() {
           <Signup />
         </Box>
       )}
+      {AuthService.loggedIn() ? (
       <RightDrawer />
+      ) : (
+        <Typography>
+          You must be logged in to view guilds
+        </Typography>
+      )}
     </Box>
   )
 }
