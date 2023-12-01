@@ -29,8 +29,8 @@ const Profile = () => {
   return (
     <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
       <Box display={'flex'} justifyContent={'flex-start'} width={'100%'}>
-        <Typography variant='h3'>
-          <Link href={'/'} underline="hover">
+        <Typography variant="h3">
+          <Link href={'/'} underline="hover" sx={{ color: 'white' }}>
             Back to Home
           </Link>
         </Typography>
