@@ -27,7 +27,16 @@ const Profile = () => {
   const { guilds, posts, username } = data.me
 
   return (
-    <Box display={'flex'} alignItems={'center'} flexDirection={'column'}>
+    <Box
+      display={'flex'}
+      alignItems={'center'}
+      flexDirection={'column'}
+      sx={{
+        backgroundImage: 'url("../../Untitled_Artwork.png")',
+        backgroundSize: 50,
+        height: '100%', // Adjust the height as needed
+      }}
+    >
       <Box display={'flex'} justifyContent={'flex-start'} width={'100%'}>
         <Typography variant="h3">
           <Link href={'/'} underline="hover" sx={{ color: 'white' }}>

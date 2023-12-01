@@ -8,7 +8,15 @@ import { useState } from 'react'
 const GuildPage = () => {
   const [create, setCreate] = useState(false)
   return (
-    <Box display={'flex'} justifyContent={'space-evenly'}>
+    <Box
+      display={'flex'}
+      justifyContent={'space-evenly'}
+      sx={{
+        backgroundImage: 'url("../../Untitled_Artwork.png")',
+        backgroundSize: 50,
+        height: '100%', // Adjust the height as needed
+      }}
+    >
       <LeftDrawer />
       {create ? (
         <Box>

@@ -10,14 +10,14 @@ import AllGuilds from '../components/AllGuilds'
 
 function Home() {
   return (
-    <Box 
-    display={'flex'} 
-    justifyContent={'space-evenly'}
-    sx={{
-      backgroundImage: 'url("../../public/Untitled_Artwork.png")',
-      backgroundSize: 50,
-      height: '100vh', // Adjust the height as needed
-    }}
+    <Box
+      display={'flex'}
+      justifyContent={'space-evenly'}
+      sx={{
+        backgroundImage: 'url("../../Untitled_Artwork.png")',
+        backgroundSize: 50,
+        height: '100%', // Adjust the height as needed
+      }}
     >
       <LeftDrawer />
       {/* <Box
