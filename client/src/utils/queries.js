@@ -20,13 +20,14 @@ export const QUERY_USER = gql`
 `
 
 export const QUERY_ME = gql`
-  query me {
+  query {
     me {
       _id
       username
       email
       guilds {
         name
+        description
         icon
         _id
         members {
@@ -42,11 +43,6 @@ export const QUERY_ME = gql`
           username
           email
         }
-      }
-      friends {
-        _id
-        username
-        email
       }
     }
   }

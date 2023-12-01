@@ -10,8 +10,25 @@ import AllGuilds from '../components/AllGuilds'
 
 function Home() {
   return (
-    <Box display={'flex'} justifyContent={'space-evenly'}>
+    <Box 
+    display={'flex'} 
+    justifyContent={'space-evenly'}
+    sx={{
+      backgroundImage: 'url("../../public/Untitled_Artwork.png")',
+      backgroundSize: 50,
+      height: '100vh', // Adjust the height as needed
+    }}
+    >
       <LeftDrawer />
+      {/* <Box
+      sx={{
+        opacity: 0.3,
+        display: 'inline-block',
+        paddingTop: 10
+      }}
+      >
+        <img src="../../public/png_trns_logo.png"></img>
+      </Box> */}
       {AuthService.loggedIn() ? (
         <AllGuilds />
       ) : (
