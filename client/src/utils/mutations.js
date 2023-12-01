@@ -92,14 +92,25 @@ export const CREATE_GUILD = gql`
   }
 `
 
+// export const JOIN_GUILD = gql`
+//   mutation joinGuild($username: String!, $guildId: ID!) {
+//     joinGuild(userId: $userId, guildId: $guildId) {
+//       _id
+//       username
+//       email
+//       guilds {
+//         _id
+//       }
+//     }
+//   }
+// `
 export const JOIN_GUILD = gql`
-  mutation joinGuild($username: String!, $guildId: ID!) {
-    joinGuild(username: $username, guildId: $guildId) {
+  mutation JoinGuild($guildId: ID!) {
+    joinGuild(guildId: $guildId) {
+      _id
       guilds {
-        _id
-        name
-        description
-        owner {
+        members {
+          email
           username
         }
       }
