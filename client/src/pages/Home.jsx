@@ -6,13 +6,14 @@ import RightDrawer from '../components/RightBar'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 import AuthService from '../utils/auth'
+import AllGuilds from '../components/AllGuilds'
 
 function Home() {
   return (
     <Box display={'flex'} justifyContent={'space-evenly'}>
       <LeftDrawer />
       {AuthService.loggedIn() ? (
-        <Post />
+        <AllGuilds />
       ) : (
         <Box
           sx={{

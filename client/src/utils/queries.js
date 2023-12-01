@@ -95,7 +95,7 @@ export const QUERY_POSTS = gql`
 
 export const QUERY_GUILDS = gql`
   query getGuilds {
-    getGuilds {
+    getAllGuilds {
       _id
       name
       description
