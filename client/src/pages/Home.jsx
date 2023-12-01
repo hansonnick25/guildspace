@@ -6,6 +6,7 @@ import RightDrawer from '../components/RightBar'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 import AuthService from '../utils/auth'
+import AllGuilds from '../components/AllGuilds'
 
 function Home() {
   return (
@@ -29,7 +30,7 @@ function Home() {
         <img src="../../public/png_trns_logo.png"></img>
       </Box> */}
       {AuthService.loggedIn() ? (
-        <Post />
+        <AllGuilds />
       ) : (
         <Box
           sx={{

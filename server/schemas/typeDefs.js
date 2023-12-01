@@ -70,7 +70,7 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): User
-    joinGuild(username: String!, guildId: ID!): User
+    joinGuild(guildId: ID!): User
     addFriend(username: String!, friendUsername: String!): User
     removeFriend(username: String!, friendUsername: String!): User
 

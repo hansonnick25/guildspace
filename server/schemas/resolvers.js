@@ -95,6 +95,13 @@ const resolvers = {
           { $addToSet: { guilds: guildId } },
           { new: true }
         ).populate('guilds')
+
+        const updatedGuild = await Guild.findOneAndUpdate(
+          { _id: guildId },
+          { $addToSet: { members: context.user._id } },
+          { new: true }
+        ).populate('members')
+
         return updatedUser
       }
       throw AuthenticationError

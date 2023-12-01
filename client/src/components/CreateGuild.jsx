@@ -39,22 +39,6 @@ const CreateGuild = () => {
     }
   }
 
-  // const handleFormBlur = event => {
-  //   if (event.target.name == 'name' && !guildFormData.name) {
-  //     console.log('Please enter your guild name')
-  //   }
-  //   // console.log(event.target)
-  //   if (
-  //     event.target.description == 'description' &&
-  //     !guildFormData.description
-  //   ) {
-  //     console.log('Please enter your guild description')
-  //   }
-  //   if (guildFormData.name && guildFormData.description) {
-  //     setDisabled(false)
-  //   }
-  // }
-
   const handleFormSubmit = async event => {
     event.preventDefault()
 
@@ -94,15 +78,15 @@ const CreateGuild = () => {
 
   return (
     <Card
-    sx={{
-      margin: 10
-    }}
+      sx={{
+        margin: 10,
+      }}
     >
       <CardHeader
         title="Create Your Guild"
         subheader="Join Forces to Fight Evil!"
         sx={{
-          textAlign: 'center'
+          textAlign: 'center',
         }}
       />
       <CardContent>
@@ -116,7 +100,7 @@ const CreateGuild = () => {
             required
             name="name"
             sx={{
-              margin: 2
+              margin: 2,
             }}
           />
           <TextField
@@ -128,7 +112,7 @@ const CreateGuild = () => {
             required
             name="description"
             sx={{
-              margin: 2
+              margin: 2,
             }}
           />
           <Button
@@ -137,7 +121,7 @@ const CreateGuild = () => {
             variant="contained"
             type="submit"
             sx={{
-              margin: 2
+              margin: 2,
             }}
           >
             Submit
