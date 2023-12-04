@@ -4,16 +4,17 @@ import { useQuery } from '@apollo/client'
 import { QUERY_ME } from '../utils/queries'
 import {
   Box,
+  Button,
   Card,
   CardContent,
   CardHeader,
   Divider,
-  Link,
   List,
   ListItem,
   ListItemText,
   Typography,
 } from '@mui/material'
+import { Link } from 'react-router-dom'
 // import GuildCard from '../components/GuildCard';
 // import PostCard from '../components/PostCard';
 
@@ -37,13 +38,10 @@ const Profile = () => {
         height: '100%', // Adjust the height as needed
       }}
     >
-      <Box display={'flex'} justifyContent={'flex-start'} width={'100%'}>
-        <Typography variant="h3">
-          <Link href={'/'} underline="hover" sx={{ color: 'white' }}>
-            Back to Home
-          </Link>
-        </Typography>
-      </Box>
+      <Button component={Link} to={'/'}>
+        Back to Home
+      </Button>
+
       <Typography variant="h1">{`${username}'s profile`}</Typography>
       <Card sx={{ minWidth: 600, minHeight: 300 }}>
         <CardHeader title="Guilds" />
