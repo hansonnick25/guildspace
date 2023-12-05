@@ -3,7 +3,6 @@ import {
   Box,
   IconButton,
   Drawer,
-  Link,
   List,
   ListItem,
   ListItemButton,
@@ -13,6 +12,7 @@ import {
   Card,
   CardContent,
 } from '@mui/material'
+import { Link } from 'react-router-dom'
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 import SecurityIcon from '@mui/icons-material/Security'
@@ -54,7 +54,7 @@ const RightDrawer = () => {
                 </ListItem>
               ))}
             </List>
-            <Button component={Link} href={'/guild'}>
+            <Button component={Link} to={'/guild'}>
               Create Guild
             </Button>
           </CardContent>
